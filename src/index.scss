@@ -1,0 +1,201 @@
+$colors:(
+    primary:#005DFF,
+    primary-light:lighten(#005DFF,40%),
+    primary-dark:darken(#005DFF,40%),
+    accent:#fff6BB,
+);
+
+$padding:15px;
+$borders:15px;
+
+@function color($color-name){
+    @return map-get($colors,$color-name)
+}
+$desktop:840px;
+@mixin desktop {/*$myColor:#1F6F47;*/
+    $colors:(
+        primary:#005DFF,
+        primary-light:lighten(#005DFF,40%),
+        primary-dark:darken(#005DFF,40%),
+        accent:#fff6BB,
+    );
+    @media (min-width:#{$desktop}){
+        @content;
+    }
+}
+html,body{
+    height: 100%#005DFF,40%;
+}
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    #bg {
+        background-color: color(primary);
+        width:100%;
+        height:100%;
+        position: absolute;
+        z-index:-1;
+        @include desktop{
+            clip-path: polygon(0 0, 78% 0, 53% 100%, 0% 100%);
+        }
+    }
+    .header{
+        background-color:#005DFF;
+    }
+    header a {
+        color: #fff;
+        text-decoration: none;
+        padding: $padding;
+        text-transform: uppercase;
+    }
+    header a img {
+        width:15%;
+        padding: 5px;
+        @include desktop{
+            width: 100px;
+        }
+    }
+    header .social-media{
+        list-style-type:none;
+        float: right;
+    }
+    header .social-media{
+        margin: 5px;
+        @include desktop{
+        margin-top: 15px;  
+        }
+    }
+    header .social-media li{
+        display: inline;
+        color:#fff;
+        font-size:18px;
+    }
+    header .social-media li a{
+        color:#fff!important;
+        text-decoration:none; 
+        @include desktop{
+            color:#111!important;
+        }
+    }
+    .header .social-media li a{
+        @include desktop{
+            color:#f9ffff!important;
+        } 
+    }
+}
+
+main {
+
+    @include desktop{
+       display: grid;
+       grid-template-columns: 50% auto;
+       grid-template-areas: 
+            "primary card"
+    }
+
+    section#card {
+        background:#fff;
+        padding: 20px;
+        margin: 1em auto;
+        border-radius: $borders;
+        box-shadow: 0 10px 30px rgba(0,0,0,.2);
+        width:80%;
+        z-index:99;
+
+        @include desktop{
+            grid-area: card;
+            height:fit-content;
+            align-self: center;
+            margin:1em;
+        }     
+
+        ul {
+            list-style-type: none;
+            margin:0;padding: 0;
+
+            li {
+                margin-bottom: 10px;
+
+                span {
+                    position: absolute;
+                    width:30px;
+                    height: 30px;
+                    background-color:color(primary-light);
+                    border-radius: 50%;
+                    margin-right:10px;
+                }
+                strong {
+                    display: inline-block;
+                    margin-left: max(40px);
+                    margin-top:5px;
+                }
+            }
+        }
+    }
+
+    section#primary {
+        color:#fff;
+        padding: $padding;
+        text-align: center;
+
+        @include desktop{
+            grid-area: primary;
+            text-align: left;
+            margin:4em 0 0 4em;
+        }
+
+        h1 {
+            font-size:3em;
+            margin-top:10px;
+            text-transform: uppercase;
+
+            @include desktop{
+              width:60%;
+              font-size:3.5em;
+              line-height:1em
+            }
+        }
+
+        p {
+            font-size:1.4em;
+            @include desktop{
+                color:#fff;
+            }
+        }
+        input {
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight:bold;
+            margin:50px auto 0 auto;
+            padding:$padding;
+            border: 1px solid #111;
+            color: #111;
+            @include desktop{ 
+            border-radius:  $borders 0 0 $borders;
+            width:50%;
+            color: #111;
+            }
+        }
+        input:focus input:focus-within{
+            border-radius:  $borders 0 0 $borders;
+        }
+        a {
+            color: #111;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight:bold;
+            background-color:color(accent);
+            display: block;
+            text-align:center;
+            margin:50px auto 0 auto;
+            padding:$padding;
+            border-radius: $borders;
+            @include desktop{
+                display: inline-block;
+                padding: $padding $padding * 4;
+                //border-radius:  0 $borders $borders 0 ;
+            }
+        }
+        
+    }
+}
